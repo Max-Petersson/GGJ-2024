@@ -1,8 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class AudioPair
+{
+    public string Key;
+    public AudioClip[] AudioClip;
 
+    public void GetRandomAudio()
+    {
+        
+    }
+}
 public interface IAudioService
 {
     public void PlayAudioClip(string clipName);
@@ -10,6 +21,7 @@ public interface IAudioService
 }
 public class AudioProvider : MonoBehaviour
 {
+    public AudioPair[]
     private static IAudioService m_audioService;
     public static IAudioService AudioService 
     {
