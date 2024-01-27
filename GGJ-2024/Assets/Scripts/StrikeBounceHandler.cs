@@ -1,43 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StrikeBounceHandler : MonoBehaviour {
 	private Rigidbody2D m_rbody;
-	public PhysicsMaterial2D m_material;
+	public TextMeshProUGUI speedText;
+
+	public float criticalVelocity = 20;
+	private float defultGravity;
 	
 
-	public float maxTime = 1;
-	public float maxVelocity = 20;
+	public static Action<float> OnBounce;
 
-	private bool stopBounce = false;
 	private void Start() {
 		m_rbody = GetComponent<Rigidbody2D>();
-		//Time.timeScale = 0.2f;
-
-
-
+		defultGravity = m_rbody.gravityScale;
 	}
+	private void Update() {
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			Vector2 movinDir = m_rbody.velocity;
+			movinDir.Normalize();
+			AddBounceVelocity(movinDir, 3);
+
+		}
+	}
+
 	void FixedUpdate() {
-		Debug.Log(m_rbody.velocity.magnitude);
-		m_rbody.velocity = Vector2.ClampMagnitude(m_rbody.velocity, maxVelocity);
+		float velMagnitude = m_rbody.velocity.magnitude;
+
+		speedText.text = Mathf.Floor(velMagnitude).ToString();
+
+		if (velMagnitude > criticalVelocity) {
+			m_rbody.gravityScale = 0;
+		}
+		else if(velMagnitude < 10) {
+			m_rbody.gravityScale = defultGravity * 1.5f;
+		}
+		else {
+			m_rbody.gravityScale = defultGravity;
+		}
+
 	}
 	private void OnTriggerEnter2D(Collider2D collision) {
-
-		if (m_rbody.velocity.magnitude > 10) {
-			m_rbody.gravityScale = 0;
-			m_material.bounciness = 2f;
-		}
-		Debug.Log("Bounce");
+		OnBounce?.Invoke(m_rbody.velocity.magnitude);
 	}
 
-	void ReturnGravity() {
-		m_rbody.gravityScale = 0;
-		m_material.bounciness = 2f;
-	}
-
-	private void ResetBounce() {
-		m_rbody.gravityScale = 2.5f;
-		m_material.bounciness = 0.1f;
+	public void AddBounceVelocity(Vector2 dir, float ammount) {
+		float currenMagnitude = m_rbody.velocity.magnitude;
+		m_rbody.velocity = dir * (currenMagnitude + ammount);
 	}
 }
