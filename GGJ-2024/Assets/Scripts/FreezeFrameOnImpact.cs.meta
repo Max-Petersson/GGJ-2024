@@ -3,7 +3,9 @@ guid: 6a8fad4f1bb30c84394addf449219baf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - particleEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  - hitSound: {fileID: 8300000, guid: 2582b4f3ed26f3c46b20a6b246aace45, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
