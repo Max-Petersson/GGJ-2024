@@ -278,6 +278,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &898334027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8425714891389857294, guid: f7312becb93056b499626b88c10b4edd, type: 3}
+  m_PrefabInstance: {fileID: 1844919700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1086539160
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +397,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 498471166009402704, guid: 9c00e5fee51373142968dcf23d45c7a4, type: 3}
+      propertyPath: _raggeDollGameObject
+      value: 
+      objectReference: {fileID: 898334027}
     - target: {fileID: 5746365325253178037, guid: 9c00e5fee51373142968dcf23d45c7a4, type: 3}
       propertyPath: m_Name
       value: Cursor
