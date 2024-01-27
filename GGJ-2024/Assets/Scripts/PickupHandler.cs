@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class PickupHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject _pickupGameObject;
+    //[SerializeField] private GameObject _pickupGameObject;
     private Rigidbody2D _pickupRigidbody2D;
     private bool _isHoldingPickup = false;
     private Vector2 _mousePosition;
+    [SerializeField]private float speed = 5f;
 
     //DEBUG ONLY
     private Vector3 _startPosition;
 
     void Start()
     {
-        _startPosition = _pickupGameObject.transform.position;
+        _startPosition = transform.root.position;
 
-        _pickupRigidbody2D = _pickupGameObject.GetComponent<Rigidbody2D>();
+        _pickupRigidbody2D = GetComponent<Rigidbody2D>();
 
         if (_pickupRigidbody2D == null)
         {
@@ -30,7 +31,7 @@ public class PickupHandler : MonoBehaviour
         if (!_isHoldingPickup)
         {
             _isHoldingPickup = true;
-            _pickupRigidbody2D.gravityScale = 0;
+            //_pickupRigidbody2D.gravityScale = 0;
         }
     }
 
@@ -41,7 +42,9 @@ public class PickupHandler : MonoBehaviour
             // Convert mouse position to world space
             Vector2 _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // Set the object's position to the mouse position
-            _pickupRigidbody2D.position = _mousePosition;
+            Vector2 _moveTowardsMouse = _mousePosition - _pickupRigidbody2D.position;
+            //_pickupRigidbody2D.velocity = _moveTowardsMouse * speed;
+            _pickupRigidbody2D.AddForce(_moveTowardsMouse, ForceMode2D.Impulse);
         }
     }
 
@@ -50,7 +53,7 @@ public class PickupHandler : MonoBehaviour
         if (_isHoldingPickup)
         {
             _isHoldingPickup = false;
-            _pickupRigidbody2D.gravityScale = 1;
+            //_pickupRigidbody2D.gravityScale = 1;
 
             // Calculate throw direction based on initial and final mouse positions
             Vector2 throwDirection = (_pickupRigidbody2D.position - _mousePosition).normalized;
@@ -67,13 +70,13 @@ public class PickupHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             // reset the pickup's position to the start position
-            _pickupGameObject.transform.position = _startPosition;
+            transform.root.position = _startPosition;
 
             // reset the pickup's velocity
             _pickupRigidbody2D.velocity = Vector2.zero;
 
             // reset the pickup's gravity
-            _pickupRigidbody2D.gravityScale = 1;
+            //_pickupRigidbody2D.gravityScale = 1;
         }
     }
 }
