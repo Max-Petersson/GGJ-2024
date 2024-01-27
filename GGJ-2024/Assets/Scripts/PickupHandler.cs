@@ -30,6 +30,7 @@ public class PickupHandler : MonoBehaviour
     {
         if (!_isHoldingPickup)
         {
+            EventManager.Instance.OnGrab.Invoke();
             _isHoldingPickup = true;
             //_pickupRigidbody2D.gravityScale = 0;
         }
