@@ -14,7 +14,7 @@ public class AudioPair
     public AudioClip AudioClip;
     public float Volume = 10f;
     public float Duration = 3f;
-    public enum SoundType {SemiLaugh, BigLaugh, SlowClap, WilhemScream, Boing, Punch}
+    public enum SoundType {SmallLaugh, SemiLaugh, BigLaugh, SlowClap, WilhemScream, Boing, Punch}
     public SoundType Type;  
 }
 public interface IAudioService
