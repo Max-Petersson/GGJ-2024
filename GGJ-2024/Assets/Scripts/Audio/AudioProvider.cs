@@ -20,6 +20,7 @@ public class AudioPair
 public interface IAudioService
 {
     public void PlayAudioClip(string clipName);
+    public void PlayConstant();
     public void StopAudioClip();
     public void PlayRandomClip(AudioPair.SoundType soundType);
     public void InitializeService();
@@ -163,6 +164,13 @@ public class RealAudioService : IAudioService
     {
         IsPlayingFalse -= StopAudio;
     }
+
+    public void PlayConstant()
+    {
+        m_source.Play();
+    }
+
+ 
 }
 public class NullAudioService : IAudioService
 {
@@ -177,6 +185,12 @@ public class NullAudioService : IAudioService
        
     }
 
+    public void PlayConstant()
+    {
+        Debug.LogError("You are trying to stop an audioclip but AudioService is Null");
+
+    }
+
     public void PlayRandomClip(AudioPair.SoundType soundType)
     {
         Debug.LogError("You are trying to play an audioclip but AudioService is Null");
@@ -187,6 +201,8 @@ public class NullAudioService : IAudioService
     {
         Debug.LogError("You are trying to stop an audioclip but AudioService is Null");
     }
+
+  
 
     public void StopService()
     {

@@ -65,7 +65,7 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 4820279d7300ea54d80b64f21139dd5b, type: 3}
     Volume: 1
     Duration: 3
-    Type: 4
+    Type: 5
   - Key: WilhelmScream
     AudioClip: {fileID: 8300000, guid: 5d95c3fa354ac7a40a9f06c17761ec2b, type: 3}
     Volume: 1
@@ -75,22 +75,22 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: df1e921254b4eb14e8a02e47251f3b48, type: 3}
     Volume: 1
     Duration: 2
-    Type: 2
+    Type: 3
   - Key: Punches.0
     AudioClip: {fileID: 8300000, guid: 8b67bc98cf22eb74ca47f4de8e8372b8, type: 3}
     Volume: 1
     Duration: 1
-    Type: 5
+    Type: 6
   - Key: OnePunch
     AudioClip: {fileID: 8300000, guid: eb63fffbe23cd12408785560dcb2224f, type: 3}
     Volume: 1
     Duration: 1
-    Type: 5
+    Type: 6
   - Key: Punches.1
     AudioClip: {fileID: 8300000, guid: a1ce2a94516c1b1498c4fa3e5ba69187, type: 3}
     Volume: 1
     Duration: 1
-    Type: 5
+    Type: 6
   - Key: SmallLaugh.0
     AudioClip: {fileID: 8300000, guid: 02e01aba74128874d80f9ab35871ce95, type: 3}
     Volume: 1
@@ -114,13 +114,13 @@ MonoBehaviour:
   - Key: BigLaugh.3
     AudioClip: {fileID: 8300000, guid: 56537fa1739560f4e81d8a52baba3924, type: 3}
     Volume: 1
-    Duration: 2
-    Type: 0
+    Duration: 2.5
+    Type: 2
   - Key: BigLaugh.4
     AudioClip: {fileID: 8300000, guid: 69225f1c851ae2f419032e045e68b8ef, type: 3}
     Volume: 1
     Duration: 3
-    Type: 0
+    Type: 2
   - Key: Boing.1
     AudioClip: {fileID: 8300000, guid: 3df0415cfbec90f4bb45059edf87c227, type: 3}
     Volume: 1
@@ -131,6 +131,21 @@ MonoBehaviour:
     Volume: 1
     Duration: 3
     Type: 1
+  - Key: BigLaugh.5
+    AudioClip: {fileID: 8300000, guid: c7141852bd23b764b8a6cbf1ab4d009a, type: 3}
+    Volume: 1
+    Duration: 4
+    Type: 2
+  - Key: BigLaugh.6
+    AudioClip: {fileID: 8300000, guid: 04d135934308b814084d2d4d675b7c11, type: 3}
+    Volume: 1
+    Duration: 2.6
+    Type: 2
+  - Key: Clap.1
+    AudioClip: {fileID: 8300000, guid: 38393cc114dc4504797243d32a4f3575, type: 3}
+    Volume: 1
+    Duration: 6
+    Type: 2
   m_source: {fileID: 5003538480280148818}
   SoundType: 0
 --- !u!82 &5003538480280148818
