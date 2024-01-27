@@ -715,7 +715,7 @@ Canvas:
   m_GameObject: {fileID: 3946449468332203564}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -727,7 +727,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &796871035328767950
 MonoBehaviour:
@@ -741,10 +741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoUnparentOnAwake: 1
   activeOnStart: 1
-  canvas: {fileID: 8866792291604319204}
+  canvas: {fileID: 3946449468332203564}
   play: {fileID: 6187677144677686293}
   mainMenu: {fileID: 3500391288355077106}
   testing: {fileID: 8068584503731634329}
