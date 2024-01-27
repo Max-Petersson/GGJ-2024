@@ -168,6 +168,16 @@ public class RealAudioService : IAudioService
     {
         IsPlayingFalse += StopAudio;
         EventManager.Instance.OnMultiplyerChanged += MultiplyerChanged;
+        EventManager.Instance.OnShoot += Shoot;
+        EventManager.Instance.OnSwingBat += SwingBat;
+    }
+    public void Shoot()
+    {
+        PlayAudioClip("GunShot");
+    }
+    public void SwingBat()
+    {
+        PlayAudioClip("SwingBat");
     }
     public void MultiplyerChanged(float multiplyer)
     {
@@ -217,7 +227,8 @@ public class RealAudioService : IAudioService
     {
         IsPlayingFalse -= StopAudio;
         EventManager.Instance.OnMultiplyerChanged -= MultiplyerChanged;
-
+        EventManager.Instance.OnShoot -= Shoot;
+        EventManager.Instance.OnSwingBat -= SwingBat;
     }
 
     public void PlayConstant()
