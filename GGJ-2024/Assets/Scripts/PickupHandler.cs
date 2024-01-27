@@ -62,6 +62,8 @@ public class PickupHandler : MonoBehaviour
             // Apply a force to the object to simulate throwing
             float throwForce = 10.0f; // Adjust this value as needed
             _pickupRigidbody2D.velocity = throwDirection * throwForce;
+
+            EventManager.Instance.OnRelease?.Invoke();
         }
     }
 
