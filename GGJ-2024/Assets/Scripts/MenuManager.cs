@@ -17,6 +17,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     [SerializeField] private GameObject EventSystemPrefab;
     private EventSystem eventSystem;
+    private const string PLAY_SCENE_NAME = "PhysicsTesting";
 
     private void Start()
     {
@@ -38,7 +39,11 @@ public class MenuManager : PersistentSingleton<MenuManager>
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
 
-        HideMenu();
+        if (scene.name == PLAY_SCENE_NAME)
+        {
+            HideMenu();
+        }
+
         ConfigEventSystem();
     }
 
@@ -68,7 +73,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     private void OnStartClick()
     {
-        SceneManager.LoadScene("PhysicsTesting");
+        SceneManager.LoadScene(PLAY_SCENE_NAME);
     }
 
     // Update is called once per frame
