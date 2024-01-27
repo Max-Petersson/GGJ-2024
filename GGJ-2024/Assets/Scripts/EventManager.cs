@@ -7,6 +7,9 @@ public class EventManager : PersistentSingleton<EventManager>
 {
 
     public Action OnGrab;
+    public Action OnRelease;
+    public Action<int> OnScoreChanged;
+    public Action<float> OnMultiplyerChanged;
 
     // Start is called before the first frame update
     void Start()
