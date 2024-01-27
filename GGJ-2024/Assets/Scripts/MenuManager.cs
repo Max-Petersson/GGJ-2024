@@ -18,7 +18,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     [SerializeField] private GameObject EventSystemPrefab;
     private EventSystem eventSystem;
-    private const string PLAY_SCENE_NAME = "Play";
+    private const string PLAY_SCENE_NAME = "Game";
 
     private void Start()
     {
