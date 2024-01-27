@@ -11,13 +11,14 @@ public class MenuManager : PersistentSingleton<MenuManager>
 {
     [SerializeField] private bool activeOnStart;
     [SerializeField] private GameObject canvas;
-    [SerializeField] private Button start;
+    [SerializeField] private Button play;
     [SerializeField] private Button mainMenu;
+    [SerializeField] private Button testing;
     [SerializeField] private Button end;
 
     [SerializeField] private GameObject EventSystemPrefab;
     private EventSystem eventSystem;
-    private const string PLAY_SCENE_NAME = "PhysicsTesting";
+    private const string PLAY_SCENE_NAME = "Game";
 
     private void Start()
     {
@@ -27,19 +28,22 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     void OnEnable()
     {
-        start.onClick.AddListener(OnStartClick);
+        play.onClick.AddListener(OnStartClick);
         mainMenu.onClick.AddListener(OnMainMenuClick);
+        testing.onClick.AddListener(OnTestingClick);
         end.onClick.AddListener(OnEndClick);
         
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
+
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
 
-        if (scene.name == PLAY_SCENE_NAME)
+        if (scene.name != "Menu" || scene.name != "End")
         {
             HideMenu();
         }
@@ -58,22 +62,32 @@ public class MenuManager : PersistentSingleton<MenuManager>
             Debug.Log("no eventsystem was found: Adding event system", eventSystem);
         }
 
-        eventSystem.firstSelectedGameObject = start.gameObject;
+        eventSystem.firstSelectedGameObject = play.gameObject;
+    }
+
+    private void LoadScene(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 
     private void OnEndClick()
     {
-        SceneManager.LoadScene("End");
+        LoadScene("End");
     }
 
     private void OnMainMenuClick()
     {
-        SceneManager.LoadScene("Menu");
+        LoadScene("Menu");
+    }
+
+    private void OnTestingClick()
+    {
+        LoadScene("PhysicsTesting");
     }
 
     private void OnStartClick()
     {
-        SceneManager.LoadScene(PLAY_SCENE_NAME);
+        LoadScene(PLAY_SCENE_NAME);
     }
 
     // Update is called once per frame
