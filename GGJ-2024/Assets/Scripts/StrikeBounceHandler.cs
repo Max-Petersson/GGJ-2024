@@ -22,15 +22,12 @@ public class StrikeBounceHandler : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			Vector2 movinDir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
 			movinDir.Normalize();
-			Debug.Log(movinDir);
 			AddBounceVelocity(movinDir, 3);
 		}
 	}
 
 	void FixedUpdate() {
 		velMagnitude = m_rbody.velocity.magnitude;
-
-		speedText.text = Mathf.Floor(velMagnitude).ToString();
 
 		if (velMagnitude > criticalVelocity) {
 			m_rbody.gravityScale = 0;
@@ -42,12 +39,14 @@ public class StrikeBounceHandler : MonoBehaviour {
 			m_rbody.gravityScale = defultGravity;
 		}
 
+		if (speedText)
+			speedText.text = Mathf.Floor(velMagnitude).ToString();
 	}
+
 	private void OnTriggerEnter2D(Collider2D collision) {
-		OnBounce?.Invoke(m_rbody.velocity.magnitude);	
+		OnBounce?.Invoke(m_rbody.velocity.magnitude);
 		if (m_rbody.velocity.x < 0) {
 			m_rbody.angularVelocity = UnityEngine.Random.Range(0.5f, 50 * velMagnitude);
-			Debug.Log("ASDA");
 		}
 		else {
 			m_rbody.angularVelocity = UnityEngine.Random.Range(-0.5f, -50 * velMagnitude);
