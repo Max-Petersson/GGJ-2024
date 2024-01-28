@@ -23,6 +23,11 @@ public class FreezeFrameOnImpact : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (audioSource == null)
+        {
+            audioSource = FindAnyObjectByType<AudioSource>();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -104,5 +109,12 @@ public class FreezeFrameOnImpact : MonoBehaviour
             Time.timeScale = 1;
 
         rb.velocity *= speedMultipier;
+
+        var laughometer = FindAnyObjectByType<LaughOMeter>();
+
+        if (laughometer != null)
+        {
+            laughometer.Bounced(rb.velocity.magnitude);
+        }
     }
 }
