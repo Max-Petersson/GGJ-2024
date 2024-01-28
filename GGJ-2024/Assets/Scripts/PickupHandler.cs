@@ -30,7 +30,6 @@ public class PickupHandler : MonoBehaviour
     {
         if (!_isHoldingPickup)
         {
-           
             _isHoldingPickup = true;
             //_pickupRigidbody2D.gravityScale = 0;
         }
