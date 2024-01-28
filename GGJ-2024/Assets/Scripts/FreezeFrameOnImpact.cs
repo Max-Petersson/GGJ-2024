@@ -15,7 +15,7 @@ public class FreezeFrameOnImpact : MonoBehaviour
     private Rigidbody2D rb;
     private float timer;
 
-    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip[] hitSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +40,10 @@ public class FreezeFrameOnImpact : MonoBehaviour
         if (Time.time < timer + cooldown)
             return;
 
+        if (!rigidbody.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
 
         var contact = collision.GetContact(0);
 
@@ -59,7 +63,12 @@ public class FreezeFrameOnImpact : MonoBehaviour
     private void TriggerFreeze(Rigidbody2D rb)
     {
         timer = Time.time;
-        AudioSource.PlayClipAtPoint(hitSound, rb.transform.position);
+
+        foreach (AudioClip hitSound in hitSounds)
+        {
+            AudioSource.PlayClipAtPoint(hitSound, rb.transform.position);
+        }
+        
         GameObject effect = Instantiate(particleEffect, rb.transform.position, rb.transform.rotation);
         Destroy(effect, freezeTime);
         StartCoroutine(CoFreezeFrame(rb, freezeTime));
@@ -72,10 +81,19 @@ public class FreezeFrameOnImpact : MonoBehaviour
             Time.timeScale = 0;
 
         rb.simulated = false;
+        if (freezeOtherRigidbody && this.rb != null)
+        {
+            this.rb.simulated = false;
+        }
 
         yield return new WaitForSecondsRealtime(duration);
 
         rb.simulated = true;
+
+        if (freezeOtherRigidbody && this.rb != null)
+        {
+            this.rb.simulated = true;
+        }
 
         if (freezeTimescale)
             Time.timeScale = 1;
