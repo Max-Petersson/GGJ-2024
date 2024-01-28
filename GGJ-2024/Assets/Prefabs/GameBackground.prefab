@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2766639850706646568}
   - component: {fileID: 115235129202036516}
   - component: {fileID: 451783340886758281}
+  - component: {fileID: 5172373885273374385}
   m_Layer: 0
   m_Name: Square (3)
   m_TagString: Untagged
@@ -130,6 +131,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5172373885273374385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100856537346057470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8fad4f1bb30c84394addf449219baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeOtherRigidbody: 1
+  velocityForImpactFrame: 50
+  freezeTimescale: 0
+  freezeTime: 0.2
+  cooldown: 10
+  speedForce: 1
+  disableColliderOnCooldown: 0
+  audioSource: {fileID: 0}
+  particleEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 2582b4f3ed26f3c46b20a6b246aace45, type: 3}
 --- !u!1 &2043555921545697388
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +215,7 @@ GameObject:
   - component: {fileID: 1955092704543303348}
   - component: {fileID: 7373897368366769125}
   - component: {fileID: 3518015066093693256}
+  - component: {fileID: 7428653169683692244}
   m_Layer: 0
   m_Name: Square (2)
   m_TagString: Untagged
@@ -310,6 +335,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7428653169683692244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395876370138285966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8fad4f1bb30c84394addf449219baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeOtherRigidbody: 1
+  velocityForImpactFrame: 50
+  freezeTimescale: 0
+  freezeTime: 0.2
+  cooldown: 10
+  speedForce: 1
+  disableColliderOnCooldown: 0
+  audioSource: {fileID: 0}
+  particleEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 2582b4f3ed26f3c46b20a6b246aace45, type: 3}
 --- !u!1 &3694025133663585906
 GameObject:
   m_ObjectHideFlags: 0

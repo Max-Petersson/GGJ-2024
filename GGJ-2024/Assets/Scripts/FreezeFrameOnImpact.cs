@@ -118,8 +118,6 @@ public class FreezeFrameOnImpact : MonoBehaviour
         if (freezeTimescale)
             Time.timeScale = 0;
 
-        Collider2D col = this.rb.GetComponent<Collider2D>();
-
         rb.simulated = false;
         if (freezeOtherRigidbody && this.rb != null)
         {
@@ -139,7 +137,7 @@ public class FreezeFrameOnImpact : MonoBehaviour
             Time.timeScale = 1;
 
         Vector2 random = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
-        rb.GetComponent<StrikeBounceHandler>().AddBounceVelocity(random, speedForce);
+        rb.GetComponent<StrikeBounceHandler>().AddBounceVelocity(rb.velocity.normalized, speedForce);
 
         //rb.velocity *= speedForce;
     }

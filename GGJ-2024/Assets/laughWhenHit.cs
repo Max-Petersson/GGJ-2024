@@ -9,11 +9,23 @@ public class LaughWhenHit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    private void OnEnable()
+    {
         audioSource = GetComponent<AudioSource>();
 
         EventManager.Instance.OnShoot += Laugh;
         EventManager.Instance.OnSwingBat += Laugh;
         EventManager.Instance.OnRelease += Laugh;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.OnShoot -= Laugh;
+        EventManager.Instance.OnSwingBat -= Laugh;
+        EventManager.Instance.OnRelease -= Laugh;
     }
 
     // Update is called once per frame
