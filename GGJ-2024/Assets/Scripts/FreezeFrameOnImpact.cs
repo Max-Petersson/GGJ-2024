@@ -9,14 +9,13 @@ public class FreezeFrameOnImpact : MonoBehaviour
     [SerializeField] private bool freezeTimescale;
     [SerializeField] private float freezeTime = 0.2f;
     [SerializeField] private float cooldown = 5f;
+    [SerializeField] private float speedMultipier = 2f;
 
     [SerializeField] private GameObject particleEffect;
     private Rigidbody2D rb;
     private float timer;
 
     [SerializeField] private AudioClip hitSound;
-
-    Vector2 accumulatedForce;
 
     // Start is called before the first frame update
     void Start()
@@ -81,9 +80,6 @@ public class FreezeFrameOnImpact : MonoBehaviour
         if (freezeTimescale)
             Time.timeScale = 1;
 
-        rb.velocity *= 2;
-
-        //rb.AddForce(accumulatedForce, ForceMode2D.Impulse);
-        accumulatedForce = Vector2.zero;
+        rb.velocity *= speedMultipier;
     }
 }
