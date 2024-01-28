@@ -141,7 +141,7 @@ public class WeaponsHandler : MonoBehaviour
                 {
                     var velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
                     _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
-                    _strikeBounceHandlerRef.AddBounceVelocity(velocity, 30);
+                    _strikeBounceHandlerRef.AddBounceVelocity(velocity, 7.5f);
                     //Instantiate(_smokeVFX, _smokePoint.position, Quaternion.identity);
                     EventManager.Instance.OnSwingBat?.Invoke();
                 }
@@ -163,7 +163,7 @@ public class WeaponsHandler : MonoBehaviour
                     
                     var velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
                     _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
-                    _strikeBounceHandlerRef.AddBounceVelocity(velocity, 30);
+                    _strikeBounceHandlerRef.AddBounceVelocity(velocity, 10f);
                     //Instantiate(_smokeVFX, _smokePoint.position, Quaternion.identity);
                     EventManager.Instance.OnShoot?.Invoke();
                     
