@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FreezeFrameOnImpact : MonoBehaviour
 {
+    [SerializeField] private bool freezeOtherRigidbody;
     [SerializeField] private float velocityForImpactFrame = 25f;
     [SerializeField] private bool freezeTimescale;
     [SerializeField] private float freezeTime = 0.2f;
@@ -23,43 +24,50 @@ public class FreezeFrameOnImpact : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.rigidbody == rb)
+        if (freezeOtherRigidbody && collision.rigidbody == null)
             return;
 
-        if (rb.velocity.magnitude < velocityForImpactFrame)
+        Rigidbody2D rigidbody = freezeOtherRigidbody ? collision.rigidbody : rb;
+
+        //collided with self
+        if (collision.otherRigidbody == rigidbody)
+            return;
+
+        if (rigidbody.velocity.magnitude < velocityForImpactFrame)
             return;
 
         if (Time.time < timer + cooldown)
             return;
-        var contact = collision.GetContact(0);
-        Vector2 moveToPoint = contact.point + contact.normal * 0.5f;
 
-        transform.position = moveToPoint;
-        accumulatedForce += collision.relativeVelocity;
-        TriggerFreeze();
+
+        var contact = collision.GetContact(0);
+
+        if (!freezeOtherRigidbody)
+        {
+            Vector2 moveToPoint = contact.point + contact.normal * 0.5f;
+            transform.position = moveToPoint;
+        }
+
+        //Vector2 relativeVelocity = freezeOtherRigidbody ? -collision.relativeVelocity : collision.relativeVelocity;
+
+        //accumulatedForce += rb.velocity * 0.5f;
+        TriggerFreeze(rigidbody);
         Debug.Log("Collided with " + collision.transform.name, collision.transform);
     }
 
-    private void TriggerFreeze()
+    private void TriggerFreeze(Rigidbody2D rb)
     {
         timer = Time.time;
-        AudioSource.PlayClipAtPoint(hitSound, transform.position);
-        GameObject effect = Instantiate(particleEffect, transform.position, transform.rotation);
+        AudioSource.PlayClipAtPoint(hitSound, rb.transform.position);
+        GameObject effect = Instantiate(particleEffect, rb.transform.position, rb.transform.rotation);
         Destroy(effect, freezeTime);
-        StartCoroutine(CoFreezeFrame(freezeTime));
+        StartCoroutine(CoFreezeFrame(rb, freezeTime));
     }
 
 
-    private IEnumerator CoFreezeFrame(float duration)
+    private IEnumerator CoFreezeFrame(Rigidbody2D rb, float duration)
     {
         if (freezeTimescale)
             Time.timeScale = 0;
@@ -73,7 +81,9 @@ public class FreezeFrameOnImpact : MonoBehaviour
         if (freezeTimescale)
             Time.timeScale = 1;
 
-        rb.AddForce(accumulatedForce, ForceMode2D.Impulse);
+        rb.velocity *= 2;
+
+        //rb.AddForce(accumulatedForce, ForceMode2D.Impulse);
         accumulatedForce = Vector2.zero;
     }
 }
