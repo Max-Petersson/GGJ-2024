@@ -87,7 +87,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     private void OnStartClick()
     {
-        LoadScene(PLAY_SCENE_NAME);
+        //LoadScene(PLAY_SCENE_NAME);
     }
 
     // Update is called once per frame
