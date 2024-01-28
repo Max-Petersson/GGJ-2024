@@ -15,6 +15,16 @@ public class PickupHandler : MonoBehaviour
     //DEBUG ONLY
     private Vector3 _startPosition;
 
+    private void OnEnable()
+    {
+        EventManager.Instance.OnRelease += () => _isHoldingPickup = false;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.OnRelease -= () => _isHoldingPickup = false;
+    }
+
     void Start()
     {
         _startPosition = transform.root.position;
