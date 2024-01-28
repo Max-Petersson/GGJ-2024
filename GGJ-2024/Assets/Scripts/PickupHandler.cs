@@ -30,7 +30,7 @@ public class PickupHandler : MonoBehaviour
     {
         if (!_isHoldingPickup)
         {
-            EventManager.Instance.OnGrab?.Invoke();
+           
             _isHoldingPickup = true;
             //_pickupRigidbody2D.gravityScale = 0;
         }
@@ -45,7 +45,7 @@ public class PickupHandler : MonoBehaviour
             // Set the object's position to the mouse position
             Vector2 _moveTowardsMouse = _mousePosition - _pickupRigidbody2D.position;
             //_pickupRigidbody2D.velocity = _moveTowardsMouse * speed;
-            _pickupRigidbody2D.AddForce(_moveTowardsMouse, ForceMode2D.Impulse);
+            _pickupRigidbody2D.MovePosition(_mousePosition);
         }
     }
 

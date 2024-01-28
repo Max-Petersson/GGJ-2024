@@ -10,6 +10,8 @@ public class EventManager : PersistentSingleton<EventManager>
     public Action OnRelease;
     public Action<int> OnScoreChanged;
     public Action<float> OnMultiplyerChanged;
+    public Action OnShoot;
+    public Action OnSwingBat;
 
     // Start is called before the first frame update
     void Start()
