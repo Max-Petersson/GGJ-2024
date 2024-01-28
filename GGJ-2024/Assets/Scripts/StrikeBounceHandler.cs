@@ -28,7 +28,7 @@ public class StrikeBounceHandler : MonoBehaviour {
 
 	float averageSpeed = 0;
 
-	float idleTimer = 0;
+	float idleTimer = 1000;
 	private float timer;
 
 	public GameObject hitVisuals;
@@ -42,7 +42,7 @@ public class StrikeBounceHandler : MonoBehaviour {
 		totalSpeed = 0;
 		numSamples = 0;
 
-		timer = 0;
+		timer = 10000;
 	}
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.Space)) {

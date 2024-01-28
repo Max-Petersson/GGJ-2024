@@ -77,7 +77,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     private void OnMainMenuClick()
     {
-        LoadScene("Menu");
+        //LoadScene("Menu");
     }
 
     private void OnTestingClick()
