@@ -9,26 +9,48 @@ public class FreezeFrameOnImpact : MonoBehaviour
     [SerializeField] private bool freezeTimescale;
     [SerializeField] private float freezeTime = 0.2f;
     [SerializeField] private float cooldown = 5f;
-    [SerializeField] private float speedMultipier = 2f;
+    [SerializeField] private float speedForce = 2f;
+    [SerializeField] private bool disableColliderOnCooldown = false;
 
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private GameObject particleEffect;
+
+    private Collider2D col;
     private Rigidbody2D rb;
     private float timer;
 
     [SerializeField] private AudioClip[] hitSounds;
 
+    private SpriteSwitcher spriteSwitcher;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
 
         if (audioSource == null)
         {
             audioSource = FindAnyObjectByType<AudioSource>();
         }
+
+        spriteSwitcher = FindAnyObjectByType<SpriteSwitcher>();
     }
+
+    //private void Update()
+    //{
+    //    if (!disableColliderOnCooldown)
+    //    {
+    //        return;
+    //    }
+
+    //    if (Time.time < timer + cooldown)
+    //        col.enabled = false;
+    //    else
+    //        col.enabled = true;
+
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -81,6 +103,12 @@ public class FreezeFrameOnImpact : MonoBehaviour
         
         GameObject effect = Instantiate(particleEffect, rb.transform.position, rb.transform.rotation);
         Destroy(effect, freezeTime);
+
+        if (freezeOtherRigidbody)
+        {
+            spriteSwitcher.Electrify(freezeTime);
+        }
+
         StartCoroutine(CoFreezeFrame(rb, freezeTime));
     }
 
@@ -89,6 +117,8 @@ public class FreezeFrameOnImpact : MonoBehaviour
     {
         if (freezeTimescale)
             Time.timeScale = 0;
+
+        Collider2D col = this.rb.GetComponent<Collider2D>();
 
         rb.simulated = false;
         if (freezeOtherRigidbody && this.rb != null)
@@ -108,13 +138,25 @@ public class FreezeFrameOnImpact : MonoBehaviour
         if (freezeTimescale)
             Time.timeScale = 1;
 
-        rb.velocity *= speedMultipier;
+        Vector2 random = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
+        rb.GetComponent<StrikeBounceHandler>().AddBounceVelocity(random, speedForce);
 
-        var laughometer = FindAnyObjectByType<LaughOMeter>();
+        //rb.velocity *= speedForce;
+    }
 
-        if (laughometer != null)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        if (Time.time < timer + cooldown)
+            return;
+
+        if (!freezeOtherRigidbody)
         {
-            laughometer.Bounced(rb.velocity.magnitude);
+            return;
         }
+
+        TriggerFreeze(collision.attachedRigidbody);
     }
 }
