@@ -43,9 +43,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -108,7 +108,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 299
+        width: 65
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 346aa00a8c83a9945b4d744dd81cdf33
+      internalID: 1151502291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 256
+        width: 260
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dde8857b6b0d354993d00cc9ad2d849
+      internalID: -1854789526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 237
+        width: 122
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72c4ded71e5a6e4b840c2930084a849
+      internalID: -1746965849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 185
+        width: 102
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e2fc9edd2566c4a90275048738859d
+      internalID: 313520552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 212
+        width: 41
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e9386bab5bfbc47bfb68591899f561
+      internalID: -1674521046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 187
+        width: 65
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb415885874d164cb495b0651b0beba
+      internalID: 1583800340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "BigSm\xF6k_3"
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 32
+        width: 250
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 582621ac1cc55ed49a72370543aebac5
+      internalID: 1039704737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "BigSm\xF6k_2"
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 34
+        width: 255
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d45bc3f1b24d4454c9c9dfc3dea30a38
+      internalID: 1772368867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 169
+        width: 42
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 373e47e1f9fd4b843835a1850129995f
+      internalID: -1270954433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "BigSm\xF6k_1"
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 36
+        width: 173
+        height: 171
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e10df7d764a4fd499c5a3034d15b001
+      internalID: -1332639346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 138
+        width: 40
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2adfb6015b686574498ae2a59d89cd14
+      internalID: -812650190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 127
+        width: 51
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d79bdcc10b2822546b410aa054680c69
+      internalID: 730469826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 121
+        width: 108
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1132cd3572896ec4cb36d622a1d2d8a3
+      internalID: -211106772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 27
+        width: 233
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc5a3f8c8c23494a8aab1e49d72bde1
+      internalID: -1290435881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameJam_Smoke_01_WeirdSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 62
+        width: 77
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9caffe4d7dd11d24eb86988a786bf7cb
+      internalID: 1415501555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "SmolSm\xF6k_2"
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 42
+        width: 115
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ece0172b8219cf94484fdfb18993342a
+      internalID: 2070297282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "SmolSm\xF6k_1"
+      rect:
+        serializedVersion: 2
+        x: 2015
+        y: 43
+        width: 65
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91793529f3691db4bbc0d4438548e7fe
+      internalID: 1412723629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +476,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "BigSm\xF6k_1": -1332639346
+      "BigSm\xF6k_2": 1772368867
+      "BigSm\xF6k_3": 1039704737
+      GameJam_Smoke_01_WeirdSpritesheet_0: 1151502291
+      GameJam_Smoke_01_WeirdSpritesheet_1: -1854789526
+      GameJam_Smoke_01_WeirdSpritesheet_10: -812650190
+      GameJam_Smoke_01_WeirdSpritesheet_11: 730469826
+      GameJam_Smoke_01_WeirdSpritesheet_12: -211106772
+      GameJam_Smoke_01_WeirdSpritesheet_13: -1290435881
+      GameJam_Smoke_01_WeirdSpritesheet_14: 1415501555
+      GameJam_Smoke_01_WeirdSpritesheet_2: -1746965849
+      GameJam_Smoke_01_WeirdSpritesheet_3: 313520552
+      GameJam_Smoke_01_WeirdSpritesheet_4: -1674521046
+      GameJam_Smoke_01_WeirdSpritesheet_5: 1583800340
+      GameJam_Smoke_01_WeirdSpritesheet_8: -1270954433
+      "SmolSm\xF6k_1": 1412723629
+      "SmolSm\xF6k_2": 2070297282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
