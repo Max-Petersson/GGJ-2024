@@ -136,5 +136,7 @@ public class StrikeBounceHandler : MonoBehaviour {
 		m_rbody.velocity = dir * (velMagnitude + ammount);
 		timer = 0;
 		idleTimer = 0;
+		OnBounceEvent.Invoke();
+		OnBounce?.Invoke(m_rbody.velocity.magnitude);
 	}
 }
