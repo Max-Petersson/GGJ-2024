@@ -101,7 +101,15 @@ public class WeaponsHandler : MonoBehaviour
 
     private void ChangeWeapon()
     {
-        SetWeaponSprite(Random.Range(0, _weapons.Count));
+        var currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+        var newWeapon = Random.Range(0, _weapons.Count);
+        
+        while (newWeapon == currentWeapon)
+        {
+            newWeapon = Random.Range(0, _weapons.Count);
+        }
+
+        SetWeaponSprite(newWeapon);
     }
 
     private void SetWeaponSprite(int weapon)
