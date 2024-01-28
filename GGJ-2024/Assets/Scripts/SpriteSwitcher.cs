@@ -8,6 +8,12 @@ public class SpriteSwitcher : MonoBehaviour
 	private SpriteRenderer m_spriteRenderer;
 	private int currentIndex = 10;
 
+	public Sprite[] electrifySprites;
+
+	public Sprite[] electrifyVFXSprites;
+
+	public SpriteRenderer electrifyVFX;
+
 	private void Start() {
 		m_spriteRenderer = GetComponent<SpriteRenderer>();
 	}
@@ -23,4 +29,34 @@ public class SpriteSwitcher : MonoBehaviour
 		m_spriteRenderer.sprite = hitSprites[randomIndex];
 		currentIndex = randomIndex;
 	}
+
+	public void Electrify(float duration)
+    {
+		StartCoroutine(CoElectrify(duration));
+    }
+
+	public IEnumerator CoElectrify(float duration)
+    {
+		float counter = 0;
+		int framecounter = 0;
+		int vfxCounter = 0;
+		electrifyVFX.enabled = true;
+
+        while (counter < duration)
+        {
+			framecounter = framecounter < electrifySprites.Length ? framecounter : 0;
+			vfxCounter = vfxCounter < electrifyVFXSprites.Length ? vfxCounter : 0;
+
+			m_spriteRenderer.sprite = electrifySprites[framecounter];
+			electrifyVFX.sprite = electrifyVFXSprites[vfxCounter];
+			yield return new WaitForSeconds(0.1f);
+
+			framecounter++;
+			vfxCounter++;
+			counter += 0.1f;
+		}
+
+		electrifyVFX.enabled = false;
+		RandomHitSprite();
+    }
 }

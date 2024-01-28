@@ -26,6 +26,7 @@ public class WeaponsHandler : MonoBehaviour
     private bool _canInteract;
 
     private int _currentWeapon = 0;
+    private bool _altArt = false;
 
 
     private enum Weapons
@@ -37,14 +38,12 @@ public class WeaponsHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.Instance.OnRelease += ChangeWeapon;
         EventManager.Instance.OnSwingBat += ChangeWeapon;
         EventManager.Instance.OnShoot += ChangeWeapon;
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.OnRelease -= ChangeWeapon;
         EventManager.Instance.OnSwingBat -= ChangeWeapon;
         EventManager.Instance.OnShoot -= ChangeWeapon;
     }
@@ -91,8 +90,16 @@ public class WeaponsHandler : MonoBehaviour
 
     private void Update()
     {
-        
-        var currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+        int currentWeapon = 0;
+
+        if (!_altArt)
+        {
+            currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+        }
+        else
+        {
+            currentWeapon = _altWeaponSprites.IndexOf(_spriteRenderer.sprite);
+        }
 
         switch (currentWeapon)
         {
@@ -103,6 +110,7 @@ public class WeaponsHandler : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && _canInteract)
                 {
                     SetWeaponSprite(0, true);
+                    _altArt = true;
                     _currentWeapon = _altWeaponSprites.IndexOf(_spriteRenderer.sprite);
                     EventManager.Instance.OnGrab?.Invoke();
                 }
@@ -110,7 +118,11 @@ public class WeaponsHandler : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     SetWeaponSprite(0, false);
+                    _altArt = false;
                     _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+                    EventManager.Instance.OnRelease?.Invoke();
+                    ChangeWeapon();
+                    
                 }
                 break;
 
@@ -148,8 +160,14 @@ public class WeaponsHandler : MonoBehaviour
                     SetWeaponSprite(2, false);
                     _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
                     transform.rotation = Quaternion.Euler(0, 0, -30);
-
+                    
+                    var velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
+                    _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+                    _strikeBounceHandlerRef.AddBounceVelocity(velocity, 30);
+                    //Instantiate(_smokeVFX, _smokePoint.position, Quaternion.identity);
                     EventManager.Instance.OnShoot?.Invoke();
+                    
+
                 }
                 break;
 
