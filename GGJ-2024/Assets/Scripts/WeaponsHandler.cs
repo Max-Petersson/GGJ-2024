@@ -12,6 +12,10 @@ public class WeaponsHandler : MonoBehaviour
     [SerializeField] private GameObject _raggeDollGameObject = null;
     [SerializeField] private Collider2D _baseBallCollider = null;
     [SerializeField] private Collider2D _grabCollider = null;
+
+    [Header("VFX")]
+    [SerializeField] private GameObject _smokeVFX = null;
+    [SerializeField] private Transform _smokePoint = null;
     
     private SpriteRenderer _spriteRenderer = null;
 
@@ -118,7 +122,7 @@ public class WeaponsHandler : MonoBehaviour
                     {
                         _baseBallCollider.enabled = true;
                     }
-                    transform.rotation = Quaternion.Euler(0, 0, -30);
+                    transform.rotation = Quaternion.Euler(0, 0, 30);
                 }
 
                 if (_canInteract)
@@ -126,22 +130,25 @@ public class WeaponsHandler : MonoBehaviour
                     var velocity = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
                     _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
                     _strikeBounceHandlerRef.AddBounceVelocity(velocity, 30);
+                    //Instantiate(_smokeVFX, _smokePoint.position, Quaternion.identity);
                     EventManager.Instance.OnSwingBat?.Invoke();
                 }
                 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, 30);
+                    transform.rotation = Quaternion.Euler(0, 0, -30);
                 }
                 break;
 
             case (int)Weapons.Gun:
                 _baseBallCollider.enabled = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0, 0, 30);
                 if (Input.GetMouseButtonDown(0))
                 {
                     SetWeaponSprite(2, false);
                     _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+                    transform.rotation = Quaternion.Euler(0, 0, -30);
+
                     EventManager.Instance.OnShoot?.Invoke();
                 }
                 break;
@@ -157,6 +164,8 @@ public class WeaponsHandler : MonoBehaviour
 
     private void ChangeWeapon()
     {
+        
+
         var newWeapon = Random.Range(0, _weapons.Count);
         
         while (newWeapon == _currentWeapon)
