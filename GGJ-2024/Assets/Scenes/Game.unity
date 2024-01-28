@@ -408,11 +408,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6925360905319583737, guid: c040fce88f21d9e4895984108aa01c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c040fce88f21d9e4895984108aa01c7d, type: 3}
+--- !u!82 &619741208 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1825346598769085616, guid: c040fce88f21d9e4895984108aa01c7d, type: 3}
+  m_PrefabInstance: {fileID: 593977967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &758335473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 1353816679466413317, guid: d2a8bfbeaa7d25f479dcc025b4f8cce7, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1403198854}
+      objectReference: {fileID: 619741208}
     - target: {fileID: 6799623795734180687, guid: d2a8bfbeaa7d25f479dcc025b4f8cce7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.4293784
@@ -1058,11 +1064,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!82 &1403198854 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5003538480280148818, guid: c040fce88f21d9e4895984108aa01c7d, type: 3}
-  m_PrefabInstance: {fileID: 593977967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1505901081
 PrefabInstance:
   m_ObjectHideFlags: 0
