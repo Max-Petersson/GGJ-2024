@@ -11,6 +11,8 @@ public class FreezeFrameOnImpact : MonoBehaviour
     [SerializeField] private float cooldown = 5f;
     [SerializeField] private float speedMultipier = 2f;
 
+    [SerializeField] private AudioSource audioSource;
+
     [SerializeField] private GameObject particleEffect;
     private Rigidbody2D rb;
     private float timer;
@@ -64,9 +66,12 @@ public class FreezeFrameOnImpact : MonoBehaviour
     {
         timer = Time.time;
 
-        foreach (AudioClip hitSound in hitSounds)
+        if (audioSource != null)
         {
-            AudioSource.PlayClipAtPoint(hitSound, rb.transform.position);
+            foreach (AudioClip hitSound in hitSounds)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
         }
         
         GameObject effect = Instantiate(particleEffect, rb.transform.position, rb.transform.rotation);
