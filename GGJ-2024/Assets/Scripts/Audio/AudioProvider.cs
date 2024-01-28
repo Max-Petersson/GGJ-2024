@@ -14,7 +14,7 @@ public class AudioPair
     public AudioClip AudioClip;
     public float Volume = 10f;
     public float Duration = 3f;
-    public enum SoundType {SmallLaugh, SemiLaugh, BigLaugh, SlowClap, WilhemScream, Boing, Punch}
+    public enum SoundType {SmallLaugh, SemiLaugh, BigLaugh, SlowClap, WilhemScream, Boing, Punch, GunShot, BatSwing}
     public SoundType Type;  
 }
 public interface IAudioService
@@ -29,7 +29,7 @@ public interface IAudioService
 public class AudioProvider : MonoBehaviour
 {
 
-
+    [SerializeField] AudioSource m_continousLaughter;
     [SerializeField] AudioPair[] m_pairs;
     [SerializeField] AudioSource m_source;
     private static IAudioService m_audioService;
@@ -67,27 +67,24 @@ public class AudioProvider : MonoBehaviour
     }
     void Start()
     {
-        SetService(new RealAudioService(m_pairs, m_source));
+        SetService(new RealAudioService(m_pairs, m_source, m_continousLaughter));
     }
     private void OnDisable()
     {
         AudioService.StopService();
     }
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            AudioService.PlayRandomClip(SoundType);
-        }
-    }
+   
 }
 
 public class RealAudioService : IAudioService
 {
+    AudioSource m_continousLaughter;
     [SerializeField] AudioPair[] m_pairs;
-    private AudioSource m_source;
+    private AudioSource m_audioClipSource;
     private static bool m_isPlaying = false;
+    private enum CurrentlyPlaying {SmallLaugh, SemiLaugh, BigLaugh, None}
+    CurrentlyPlaying state = CurrentlyPlaying.None;
     public static bool IsPlaying { get { return m_isPlaying; } 
         set 
         {
@@ -102,10 +99,11 @@ public class RealAudioService : IAudioService
     public static Action<float> startTimerForAudio;
 
     public static EventHandler IsPlayingFalse;
-    public RealAudioService(AudioPair[] pairs , AudioSource source)
+    public RealAudioService(AudioPair[] pairs , AudioSource source, AudioSource continousLaughter)
     {
         m_pairs = pairs;
-        m_source = source;
+        m_audioClipSource = source;
+        m_continousLaughter = continousLaughter;
     }
     public void PlayAudioClip(string clipName)
     {
@@ -125,11 +123,22 @@ public class RealAudioService : IAudioService
 
         }
         Debug.Log(clipName);
-        m_source.GetComponent<AudioSource>().PlayOneShot(pair.AudioClip, pair.Volume); // play it with the volume 
+        m_audioClipSource.GetComponent<AudioSource>().PlayOneShot(pair.AudioClip, pair.Volume); // play it with the volume 
         
         startTimerForAudio?.Invoke(pair.Duration); // wait until another can be played
     }
-   
+    public AudioPair GetClip(string key)
+    {
+        foreach (AudioPair audioPair in m_pairs) // find the audio with the specifyed key
+        {
+            if (audioPair.Key == key)
+            {
+                return audioPair;
+            }
+
+        }
+        return null;
+    }
     public void PlayRandomClip(AudioPair.SoundType soundType)
     {
        
@@ -152,22 +161,79 @@ public class RealAudioService : IAudioService
     }
     public void StopAudioClip()
     {
-        m_source.Stop();
+        m_audioClipSource.Stop();
     }
 
     public void InitializeService() // setup listener for isplayingchanged
     {
         IsPlayingFalse += StopAudio;
+        EventManager.Instance.OnMultiplyerChanged += MultiplyerChanged;
+        EventManager.Instance.OnShoot += Shoot;
+        EventManager.Instance.OnSwingBat += SwingBat;
+    }
+    public void Shoot()
+    {
+        PlayAudioClip("GunShot");
+    }
+    public void SwingBat()
+    {
+        PlayAudioClip("SwingBat");
+    }
+    public void MultiplyerChanged(float multiplyer)
+    {
+        float percentage = (multiplyer - 1) / UILaughOMeter.c_maxMultiplyer;
+        percentage = Mathf.Clamp(percentage, 0, 1);
+        Debug.Log(percentage);
+        if (percentage > 0.66f )
+        {
+            if (state == CurrentlyPlaying.BigLaugh)
+                return;
+            state = CurrentlyPlaying.BigLaugh;
+            PlayContinous("BigLaugh");
+            //play huge laughter
+            return;
+        }
+        else if(percentage > 0.33f)
+        {
+            if (state == CurrentlyPlaying.SemiLaugh)
+                return;
+            state = CurrentlyPlaying.SemiLaugh;
+            PlayContinous("SemiLaugh");
+            
+            return;
+        }
+        else
+        {
+            if (state == CurrentlyPlaying.SmallLaugh)
+                return;
+
+            state = CurrentlyPlaying.SmallLaugh;
+            PlayContinous("SmallLaugh");
+        }
+
+
+        //play small laugh
+    }
+
+    private void PlayContinous(string key)
+    {
+        AudioPair audioPair = GetClip(key);
+        m_continousLaughter.clip = audioPair.AudioClip;
+        m_continousLaughter.volume = audioPair.Volume;
+        m_continousLaughter.Play();
     }
 
     public void StopService() // unsubscribe
     {
         IsPlayingFalse -= StopAudio;
+        EventManager.Instance.OnMultiplyerChanged -= MultiplyerChanged;
+        EventManager.Instance.OnShoot -= Shoot;
+        EventManager.Instance.OnSwingBat -= SwingBat;
     }
 
     public void PlayConstant()
     {
-        m_source.Play();
+        m_continousLaughter.Play();
     }
 
  
