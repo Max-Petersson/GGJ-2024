@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1658106557966840290}
   - component: {fileID: 4016596707428239246}
   - component: {fileID: 7869130562176384680}
+  - component: {fileID: 7429082276153675192}
   m_Layer: 5
   m_Name: LaughoMeter
   m_TagString: Untagged
@@ -260,6 +261,19 @@ MonoBehaviour:
   m_clockCursor: {fileID: 3564992078688634436}
   c_startingRotZ: -61
   c_maxRotZ: 63
+--- !u!114 &7429082276153675192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689752188623948154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb89f08a7ada91d4abd469476a072fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_baseScore: 100
 --- !u!1 &6840757059848065776
 GameObject:
   m_ObjectHideFlags: 0
