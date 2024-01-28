@@ -157,7 +157,7 @@ MonoBehaviour:
   velocityForImpactFrame: 0
   freezeTimescale: 0
   freezeTime: 2
-  cooldown: 5
+  cooldown: 7.5
   speedForce: 2
   disableColliderOnCooldown: 0
   audioSource: {fileID: 0}
