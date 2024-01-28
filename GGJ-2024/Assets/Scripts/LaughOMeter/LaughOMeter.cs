@@ -4,6 +4,7 @@ using UnityUtils;
 using UnityEngine;
 using Unity.VisualScripting;
 using System.Linq.Expressions;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class LaughOMeter : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LaughOMeter : MonoBehaviour
     private float m_multiplyer = 1;
     private int m_currentScore = 0;
     private bool m_isHoldingPlayer = false;
+    public float m_baseScore = 100;
 
     private const float c_multiplyerAddon = .1f;
     WaitForSeconds m_waitTime = new WaitForSeconds(2f);
@@ -59,6 +61,7 @@ public class LaughOMeter : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Smacked();
+            CurrentScore += (int)(m_baseScore * Multiplyer);
         }
     }
     public void Grabbed()

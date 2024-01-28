@@ -9,7 +9,7 @@ public class UILaughOMeter : MonoBehaviour
     public float c_startingRotZ = 45;
     public float c_maxRotZ = -45;
     float m_wantedRot = -61;
-    const float c_maxMultiplyer = 2f;
+    public static  float c_maxMultiplyer = 2f;
     private void OnEnable()
     {
         EventManager.Instance.OnMultiplyerChanged += UpdateMultiplyer;
