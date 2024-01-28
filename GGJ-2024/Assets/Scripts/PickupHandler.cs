@@ -10,6 +10,7 @@ public class PickupHandler : MonoBehaviour
     private bool _isHoldingPickup = false;
     private Vector2 _mousePosition;
     [SerializeField]private float speed = 5f;
+    [SerializeField] private float throwMultiplier = 1.5f;
 
     //DEBUG ONLY
     private Vector3 _startPosition;
@@ -31,7 +32,7 @@ public class PickupHandler : MonoBehaviour
         if (!_isHoldingPickup)
         {
             _isHoldingPickup = true;
-            //_pickupRigidbody2D.gravityScale = 0;
+            _pickupRigidbody2D.gravityScale = 0;
         }
     }
 
@@ -39,13 +40,25 @@ public class PickupHandler : MonoBehaviour
     {
         if (_isHoldingPickup)
         {
+            MoveTowardsMouse();
             // Convert mouse position to world space
-            Vector2 _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Vector2 _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // Set the object's position to the mouse position
-            Vector2 _moveTowardsMouse = _mousePosition - _pickupRigidbody2D.position;
+            //Vector2 _moveTowardsMouse = _mousePosition - _pickupRigidbody2D.position;
             //_pickupRigidbody2D.velocity = _moveTowardsMouse * speed;
-            _pickupRigidbody2D.MovePosition(_mousePosition);
+
+
+            //_pickupRigidbody2D.MovePosition(_mousePosition);
         }
+    }
+
+    private void MoveTowardsMouse()
+    {
+        // Convert mouse position to world space
+        Vector2 _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 targetVelocity = _mousePosition - _pickupRigidbody2D.position;
+
+        _pickupRigidbody2D.velocity = targetVelocity * speed;
     }
 
     void OnMouseUp()
@@ -53,14 +66,14 @@ public class PickupHandler : MonoBehaviour
         if (_isHoldingPickup)
         {
             _isHoldingPickup = false;
-            //_pickupRigidbody2D.gravityScale = 1;
+            _pickupRigidbody2D.gravityScale = 1;
 
             // Calculate throw direction based on initial and final mouse positions
             Vector2 throwDirection = (_pickupRigidbody2D.position - _mousePosition).normalized;
 
             // Apply a force to the object to simulate throwing
-            float throwForce = 10.0f; // Adjust this value as needed
-            _pickupRigidbody2D.velocity = throwDirection * throwForce;
+            //float throwForce = 10.0f; // Adjust this value as needed
+            _pickupRigidbody2D.velocity *= throwMultiplier;
 
             EventManager.Instance.OnRelease?.Invoke();
         }
