@@ -102,6 +102,12 @@ public class WeaponsHandler : MonoBehaviour
                     _currentWeapon = _altWeaponSprites.IndexOf(_spriteRenderer.sprite);
                     EventManager.Instance.OnGrab?.Invoke();
                 }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    SetWeaponSprite(0, false);
+                    _currentWeapon = _weapons.IndexOf(_spriteRenderer.sprite);
+                }
                 break;
 
             case (int)Weapons.Bat:
